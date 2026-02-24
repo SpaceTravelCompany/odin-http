@@ -26,7 +26,7 @@ respond_plain :: proc(r: ^Response, text: string, status: Status = .OK, loc := #
 }
 
 @(private)
-ENOENT :: os.ERROR_FILE_NOT_FOUND when ODIN_OS == .Windows else os.ENOENT
+//ENOENT :: os.ERROR_FILE_NOT_FOUND when ODIN_OS == .Windows else os.ENOENT //unused
 
 /*
 Sends the content of the file at the given path as the response.
@@ -125,15 +125,15 @@ respond_dir :: proc(r: ^Response, base, target, request: string, loc := #caller_
 		return
 	}
 
-	// Detect path traversal attacks.
-	req_clean := filepath.clean(request, context.temp_allocator)
-	base_clean := filepath.clean(base, context.temp_allocator)
+	// Detect path traversal attacks. //edited
+	req_clean, _ := filepath.clean(request, context.temp_allocator)
+	base_clean, _ := filepath.clean(base, context.temp_allocator)
 	if !strings.has_prefix(req_clean, base_clean) {
 		respond(r, Status.Not_Found)
 		return
 	}
 
-	file_path := filepath.join([]string{"./", target, strings.trim_prefix(req_clean, base_clean)}, context.temp_allocator)
+	file_path, _ := filepath.join([]string{"./", target, strings.trim_prefix(req_clean, base_clean)}, context.temp_allocator)
 	respond_file(r, file_path, loc = loc)
 }
 
