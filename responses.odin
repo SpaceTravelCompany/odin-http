@@ -25,7 +25,7 @@ respond_plain :: proc(r: ^Response, text: string, status: Status = .OK, loc := #
 	respond(r, loc)
 }
 
-@(private)
+//@(private)
 //ENOENT :: os.ERROR_FILE_NOT_FOUND when ODIN_OS == .Windows else os.ENOENT //unused
 
 /*
