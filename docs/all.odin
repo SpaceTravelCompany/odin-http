@@ -3,9 +3,9 @@ This file simply imports any packages we want in the documentation.
 */
 package docs
 
-import "../client"
 import http ".."
-import "../openssl"
+import "../client"
+import "shared:clibs/openssl"
 
 _ :: client
 _ :: http
