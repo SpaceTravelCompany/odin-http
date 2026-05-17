@@ -12,7 +12,7 @@ import "core:strconv"
 import "core:strings"
 
 import http ".."
-import openssl "engine:clibs/openssl"
+import openssl "shared:clibs/openssl"
 
 Request :: struct {
 	method:  http.Method,

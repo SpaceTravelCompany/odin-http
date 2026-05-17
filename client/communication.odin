@@ -11,7 +11,7 @@ import "core:strconv"
 import "core:strings"
 
 import http ".."
-import openssl "engine:clibs/openssl"
+import openssl "shared:clibs/openssl"
 
 parse_endpoint :: proc(target: string) -> (url: http.URL, endpoint: net.Endpoint, err: net.Network_Error) {
 	url = http.url_parse(target)
